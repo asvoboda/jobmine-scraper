@@ -2,6 +2,11 @@
 
 Simple python command line tool to search Jobmine with given criteria for jobs. Builds output based on inverse [joblinting] (http://joblint.org/) for the competitive sounding and hollow benefit co-op positions. 
 
+Sample Usage
+```
+python jobminer.py -d1 COMP -d2 SOFT -s 1149 asvoboda
+```
+
 `python jobminer.py --help`
 
 ```
