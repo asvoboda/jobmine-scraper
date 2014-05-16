@@ -64,6 +64,15 @@ parser.add_argument('-e', '--employer', type=str, default="",
 parser.add_argument('-s', '--session', type=int, default=1149,
                    help='job session number, ex: 1149 = [1] 20[14] September[9]')
 
+parser.add_argument('-jr', '--junior', action='store_true',
+                   help='search for junior jobs')
+
+parser.add_argument('-it', '--intermediate', action='store_true',
+                   help='search for intermediate jobs')
+
+parser.add_argument('-sr', '--senior', action='store_true',
+                   help='search for senior jobs')
+
 def prompt_credentials():
     print "Attempting to login as " + userid
     return getpass()
@@ -97,6 +106,18 @@ def search(driver, options):
     driver.find_element_by_id("UW_CO_JOBSRCH_UW_CO_EMPLYR_NAME").send_keys(options['employer'])
     driver.find_element_by_id("UW_CO_JOBSRCH_UW_CO_JOB_TITLE").send_keys(options['title'])
     driver.find_element_by_id("UW_CO_JOBSRCH_UW_CO_WT_SESSION").send_keys(options['session'])
+
+    junior = driver.find_element_by_id("UW_CO_JOBSRCH_UW_CO_COOP_JR")
+    if (not junior.is_selected() and options['junior']) or (junior.is_selected() and not options['junior']):
+        junior.click()
+
+    intermediate = driver.find_element_by_id("UW_CO_JOBSRCH_UW_CO_COOP_INT")
+    if (not intermediate.is_selected() and options['intermediate']) or (intermediate.is_selected() and not options['intermediate']):
+        intermediate.click()
+
+    senior = driver.find_element_by_id("UW_CO_JOBSRCH_UW_CO_COOP_SR")
+    if (not senior.is_selected() and options['senior']) or (senior.is_selected() and not options['senior']):
+        senior.click()
     
     driver.find_element_by_id("UW_CO_JOBSRCHDW_UW_CO_DW_SRCHBTN").click() # search
     time.sleep(5)
@@ -209,7 +230,10 @@ if __name__ == "__main__":
         "discp3": SEARCH_CONSTANTS[args.discipline3],
         "session": args.session,
         "employer": args.employer,
-        "title": args.title
+        "title": args.title,
+        "junior": args.junior,
+        "intermediate": args.intermediate,
+        "senior": args.senior
     }
 
     search(driver, options)

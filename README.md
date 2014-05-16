@@ -2,9 +2,9 @@
 
 Simple python command line tool to search Jobmine with given criteria for jobs. Builds output based on inverse [joblinting] (http://joblint.org/) for the competitive sounding and hollow benefit co-op positions. 
 
-Sample Usage
+Sample Usage:
 ```
-python jobminer.py -d1 COMP -d2 SOFT -s 1149 asvoboda
+python jobminer.py -d1 COMP -d2 SOFT -s 1149 -sr asvoboda
 ```
 
 `python jobminer.py --help`
@@ -14,7 +14,7 @@ usage: jobminer.py [-h]
                    [-d1 {TRON,COMP,MECH,UNSP,CIV,ENV,CHEM,ELEC,NANO,SOFT,SYDE,GEO,MAN}]
                    [-d2 {TRON,COMP,MECH,UNSP,CIV,ENV,CHEM,ELEC,NANO,SOFT,SYDE,GEO,MAN}]
                    [-d3 {TRON,COMP,MECH,UNSP,CIV,ENV,CHEM,ELEC,NANO,SOFT,SYDE,GEO,MAN}]
-                   [-t TITLE] [-e EMPLOYER] [-s SESSION]
+                   [-t TITLE] [-e EMPLOYER] [-s SESSION] [-jr] [-it] [-sr]
                    username
 
 Search and login options for jobmine
@@ -36,4 +36,7 @@ optional arguments:
                         employer search string
   -s SESSION, --session SESSION
                         job session number, ex: 1149 = [1] 20[14] September[9]
+  -jr, --junior         search for junior jobs
+  -it, --intermediate   search for intermediate jobs
+  -sr, --senior         search for senior jobs
 ```
