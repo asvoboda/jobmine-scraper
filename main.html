@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html lang="en">
+<head>
+	<title>Jobmine Jobs!</title>
+</head>
+<body>
+	<h2>{{jobs|length}} Interesting Jobs on Jobmine!</h2>
+	<table>
+		<thead>
+			<th>Details</th>
+			<th>Employer</th>
+			<th>Location</th>
+			<th>Notices</th>
+			<th>Warnings</th>
+			<th>Errors</th>
+		</thead>
+		<tbody>
+			{% for id, job in jobs.iteritems() %}
+			<tr>
+				<td><a href="{{ job.detail }}">{{ job.title }}</a></td>
+				<td>{{job.employer}}</td>
+				<td>{{job.location}}</td>
+				<td> 
+					<ul>
+						{% for notice in job.lint.notices %}
+							<li>{{ notice.message }}</li>
+						{% endfor %}
+					</ul>
+				</td>
+				<td> 
+					<ul>
+						{% for warning in job.lint.warnings %}
+							<li>{{ warning.message }}</li>
+						{% endfor %}
+					</ul>
+				</td>
+				<td> 
+					<ul>
+						{% for error in job.lint.errors %}
+							<li>{{ error.message }}</li>
+						{% endfor %}
+					</ul>
+				</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+</body>
+</html>
